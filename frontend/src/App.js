@@ -15,16 +15,26 @@ import axios from "axios";
 //set up a global axios defaults
 axios.defaults.baseURL="http://localhost:5000"
 
+//Handle the 404 page
+const NoMatch=({location})=>(
+  <div>
+    <h3>No Match for <code>{location.pathname}</code></h3>
+    </div>
+)
+
 function App() {
   return (
     <Router>
     <div className="container" >
      <Navbar />
      <br />
+
      <Route path="/" exact component={ExerciseList} />
      <Route path="/edit/:id" exact component={EditExercise} />
      <Route path="/create" exact component={CreateExercise} />
      <Route path="/user" exact component={CreateUser} />
+     <Route component={NoMatch} />
+
     </div>
     </Router>
   );
